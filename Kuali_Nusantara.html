@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuali Nusantara | Media & Entertainment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #e67e22; /* Warna Oranye Rempah */
+            --secondary: #27ae60; /* Warna Hijau Segar */
+            --dark: #1a1a1a;
+            --light: #ffffff;
+        }
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: #f4f4f4; color: var(--dark); line-height: 1.6; }
+        
+        /* Header & Brand Identity */
+        header { background: linear-gradient(135deg, var(--primary), #d35400); color: white; padding: 60px 20px; text-align: center; border-bottom-left-radius: 50px; border-bottom-right-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .logo-placeholder { width: 100px; height: 100px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-weight: bold; color: var(--primary); font-size: 24px; border: 4px solid rgba(255,255,255,0.3); }
+        
+        /* Layout Utama */
+        .main-container { max-width: 500px; margin: -40px auto 40px; padding: 0 20px; }
+        .card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin-bottom: 20px; }
+        
+        /* Social Media Buttons */
+        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
+        .social-link { padding: 12px; border-radius: 12px; text-decoration: none; color: white; font-weight: 600; font-size: 14px; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
+        .ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .tt { background: #000000; }
+        .social-link:hover { opacity: 0.8; transform: translateY(-2px); }
+
+        /* Rate Card & Benefits */
+        .price-tag { font-size: 22px; color: var(--primary); font-weight: 700; margin: 10px 0; }
+        .benefit-list { text-align: left; padding: 0; list-style: none; font-size: 14px; }
+        .benefit-list li { margin-bottom: 8px; display: flex; align-items: flex-start; }
+        .benefit-list li::before { content: '✓'; color: var(--secondary); font-weight: bold; margin-right: 10px; }
+
+        /* CTA Button */
+        .btn-wa { display: block; background: var(--secondary); color: white; padding: 18px; border-radius: 15px; text-decoration: none; font-weight: 700; font-size: 18px; margin-top: 20px; transition: 0.3s; box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3); }
+        .btn-wa:hover { background: #219150; transform: scale(1.02); }
+
+        /* Hidden Content Logic */
+        .content-section { display: none; }
+        .show { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-placeholder">KN</div>
+    <h1>Kuali Nusantara</h1>
+    <p>Media Partner Kuliner Terpercaya</p>
+</header>
+
+<div class="main-container">
+    <div class="card">
+        <p style="font-weight: 600; margin-top: 0;">Kunjungi Portfolio Kami:</p>
+        <div class="social-grid">
+            <a href="https://www.instagram.com/kualinusantara_?igsh=MTdjM2dzMXFzaWh6bg==" class="social-link ig" target="_blank">Instagram</a>
+            <a href="https://www.tiktok.com/@kuali_nusantara?_r=1&_t=ZS-92zImdMN4Tt" class="social-link tt" target="_blank">TikTok</a>
+        </div>
+    </div>
+
+    <div id="dynamic-card" class="card">
+        <h2 id="client-title">Penawaran Kerjasama</h2>
+        <p id="client-desc">Silakan pilih kategori bisnis Anda untuk melihat detail benefit dan rate card khusus.</p>
+
+        <div id="section-umkm" class="content-section">
+            <div class="price-tag">IDR 500K - 1 Juta</div>
+            <ul class="benefit-list">
+                <li><strong>Short Form Video:</strong> 1x Konten Review (High Definition).</li>
+                <li><strong>Story Integration:</strong> 2x IG Story dengan Link Direct Order.</li>
+                <li><strong>Organic Engagement:</strong> Strategi hashtag dan audiens kuliner lokal.</li>
+                <li><strong>Raw Files:</strong> Hak akses dokumen mentah foto produk.</li>
+            </ul>
+        </div>
+
+        <div id="section-resto" class="content-section">
+            <div class="price-tag">IDR 1,5 Juta - 3 Juta</div>
+            <ul class="benefit-list">
+                <li><strong>Cinematic Review:</strong> Video durasi 60 detik dengan narasi *storytelling*.</li>
+                <li><strong>Multi-Platform:</strong> Posting serentak di Instagram & TikTok.</li>
+                <li><strong>Voucher Giveaway:</strong> Strategi interaksi untuk menarik trafik kunjungan fisik.</li>
+                <li><strong>Permanent Post:</strong> Konten tidak akan dihapus (Feeds/Timeline).</li>
+                <li><strong>Analytics Report:</strong> Laporan performa konten (Reach & Impression).</li>
+            </ul>
+        </div>
+
+        <a href="https://wa.me/6282255137774?text=Halo%20Admin%20Kuali%20Nusantara,%20saya%20tertarik%20untuk%20kerjasama%20endorsement" class="btn-wa">Chat Admin Sekarang</a>
+    </div>
+
+    <div style="text-align: center; font-size: 11px; color: #888;">
+        Simulasi Client: <br>
+        <button onclick="updateView('umkm')">View UMKM</button> | 
+        <button onclick="updateView('resto')">View Resto/Rumah Makan</button>
+    </div>
+</div>
+
+<script>
+    function updateView(type) {
+        // Reset view
+        document.getElementById('section-umkm').classList.remove('show');
+        document.getElementById('section-resto').classList.remove('show');
+        
+        if (type === 'umkm') {
+            document.getElementById('client-title').innerText = "Paket Support UMKM";
+            document.getElementById('client-desc').innerText = "Solusi tepat bagi pengusaha lokal untuk meningkatkan brand awareness dengan biaya efisien.";
+            document.getElementById('section-umkm').classList.add('show');
+        } else if (type === 'resto') {
+            document.getElementById('client-title').innerText = "Paket Pro Resto & Rumah Makan";
+            document.getElementById('client-desc').innerText = "Paket komprehensif untuk menonjolkan ambience dan keunikan menu resto Anda secara profesional.";
+            document.getElementById('section-resto').classList.add('show');
+        }
+    }
+
+    // Auto-detect dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const clientType = urlParams.get('ref');
+    if(clientType) updateView(clientType);
+</script>
+
+</body>
+</html>

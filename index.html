@@ -4,184 +4,186 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kuali Nusantara | Executive Media Partner</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #e67e22; 
-            --secondary: #27ae60; 
-            --dark: #121212;
+            --dark: #0f0f0f;
             --glass: rgba(255, 255, 255, 0.98);
         }
+
+        #scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: var(--primary); z-index: 1000; transition: width 0.1s; }
+
         * { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; margin: 0; background: #fafafa; color: var(--dark); overflow-x: hidden; }
         
-        /* Background Efek Mewah */
-        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at top right, #fff3e0, transparent), radial-gradient(circle at bottom left, #e8f5e9, transparent); z-index: -1; }
-
-        header { background: linear-gradient(135deg, #2c3e50, #000000); color: white; padding: 80px 20px 100px; text-align: center; border-bottom-left-radius: 60px; border-bottom-right-radius: 60px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); position: relative; }
+        header { 
+            background-color: #000;
+            background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+            color: white; 
+            padding: 100px 20px 120px; 
+            text-align: center; 
+            border-bottom-left-radius: 60px; 
+            border-bottom-right-radius: 60px; 
+            position: relative;
+            box-shadow: inset 0 -30px 60px rgba(0,0,0,0.4);
+        }
         
-        .main-container { max-width: 500px; margin: -60px auto 40px; padding: 0 20px; animation: fadeInUp 1s ease; }
+        .logo-wrapper {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .logo-floating { 
+            width: 100%; 
+            height: 100%; 
+            border-radius: 50% !important; 
+            border: 4px solid var(--primary); 
+            padding: 4px; 
+            background: white; 
+            object-fit: cover; 
+            display: block;
+        }
+
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        .main-container { max-width: 500px; margin: -60px auto 50px; padding: 0 20px; }
         
-        .card { background: var(--glass); backdrop-filter: blur(15px); padding: 30px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 20px 40px rgba(0,0,0,0.06); margin-bottom: 25px; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
-        
-        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 10px 0; }
-        .social-link { padding: 15px; border-radius: 18px; text-decoration: none; color: white; font-weight: 600; font-size: 13px; text-align: center; transition: 0.3s; text-transform: uppercase; letter-spacing: 1.5px; box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
-        .ig, .tt { background: #000; border: 1px solid rgba(255,255,255,0.2); }
+        .card { background: var(--glass); backdrop-filter: blur(20px); padding: 35px 25px; border-radius: 35px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 20px 40px rgba(0,0,0,0.04); margin-bottom: 30px; }
 
-        .package-title { font-size: 17px; font-weight: 700; color: var(--dark); margin-bottom: 5px; text-transform: uppercase; border-left: 4px solid var(--primary); padding-left: 12px; letter-spacing: 0.5px; }
-        .price-tag { font-size: 24px; color: var(--primary); font-weight: 800; margin: 10px 0; letter-spacing: -1px; }
-        .benefit-list { text-align: left; padding: 0; list-style: none; font-size: 14px; color: #444; margin-bottom: 30px; }
-        .benefit-list li { margin-bottom: 12px; display: flex; align-items: center; }
-        .benefit-list li::before { content: '✦'; color: var(--primary); margin-right: 12px; font-size: 16px; font-weight: bold; }
+        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 10px 0; }
+        .social-link { padding: 14px; border-radius: 18px; text-decoration: none; color: white; font-weight: 600; font-size: 11px; text-align: center; transition: 0.3s; text-transform: uppercase; letter-spacing: 1.5px; background: #111; border: 1px solid rgba(255,255,255,0.1); }
+        .social-full { grid-column: span 2; }
 
-        /* Testimonial Slider */
-        .testimonial-wrapper { overflow: hidden; position: relative; margin: 20px 0; }
-        .testimonial-container { display: flex; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-        .testimonial-card { min-width: 100%; box-sizing: border-box; padding: 10px 20px; text-align: center; }
-        .testimonial-text { font-style: italic; font-size: 14px; color: #555; line-height: 1.8; margin-bottom: 15px; }
-        .testimonial-author { font-weight: 700; color: var(--primary); font-size: 11px; display: block; letter-spacing: 1.5px; text-transform: uppercase; }
-        .dots { text-align: center; margin-top: 15px; }
-        .dot { height: 6px; width: 6px; background-color: #ddd; border-radius: 50%; display: inline-block; margin: 0 4px; transition: 0.3s; }
-        .dot.active { background-color: var(--primary); width: 20px; border-radius: 10px; }
+        .marquee-wrapper { width: 100%; overflow: hidden; position: relative; padding: 20px 0; background: rgba(0,0,0,0.02); border-radius: 20px; }
+        .marquee-content { display: flex; width: max-content; animation: smoothScroll 45s linear infinite; }
+        .marquee-item { padding: 0 40px; border-right: 1px solid #ddd; display: flex; flex-direction: column; justify-content: center; width: 350px; }
+        .testi-quote { font-size: 13px; font-style: italic; color: #555; line-height: 1.6; margin: 0; }
+        .testi-user { font-weight: 700; font-size: 10px; color: var(--primary); margin-top: 10px; letter-spacing: 1.5px; text-transform: uppercase; }
 
-        /* FAQ */
-        .faq-item { border-bottom: 1px solid #eee; padding: 18px 0; cursor: pointer; }
-        .faq-question { font-weight: 600; font-size: 14px; display: flex; justify-content: space-between; align-items: center; }
-        .faq-answer { font-size: 13px; color: #666; display: none; margin-top: 12px; line-height: 1.7; }
+        @keyframes smoothScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
 
-        .btn-wa { display: block; background: var(--dark); color: white; padding: 22px; border-radius: 20px; text-decoration: none; font-weight: 700; font-size: 16px; margin-top: 30px; text-align: center; transition: 0.3s; letter-spacing: 2px; text-transform: uppercase; box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
+        .price-tag { font-size: 26px; color: var(--primary); font-weight: 800; margin: 10px 0; }
+        .package-title { font-size: 16px; font-weight: 700; color: var(--dark); text-transform: uppercase; letter-spacing: 1px; }
+        .benefit-list { padding: 0; list-style: none; margin: 20px 0; }
+        .benefit-list li { margin-bottom: 12px; font-size: 14px; display: flex; align-items: center; color: #444; }
+        .benefit-list li::before { content: "✦"; color: var(--primary); margin-right: 12px; font-weight: bold; }
+
+        .faq-item { border-bottom: 1px solid #eee; padding: 15px 0; cursor: pointer; }
+        .faq-question { font-weight: 600; font-size: 14px; display: flex; justify-content: space-between; }
+        .faq-answer { font-size: 13px; color: #666; display: none; margin-top: 10px; line-height: 1.6; }
+
+        .btn-wa { display: block; background: #000; color: #fff; padding: 22px; border-radius: 20px; text-decoration: none; font-weight: 700; text-align: center; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
         .btn-wa:hover { background: var(--primary); transform: translateY(-3px); }
 
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-        footer { text-align: center; padding: 40px 20px; color: #aaa; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+        footer { text-align: center; padding: 40px; opacity: 0.4; font-size: 9px; letter-spacing: 3px; }
     </style>
 </head>
 <body>
 
+<div id="scroll-progress"></div>
+
 <header>
-    <img src="logo.jpg" alt="Logo Kuali Nusantara" style="width:130px; height:130px; border-radius:50%; border:6px solid rgba(255,255,255,0.15); margin-bottom:20px; object-fit:cover; background: white; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
-    <div style="font-weight: 700; font-size: 11px; letter-spacing: 4px; color: #bf953f; margin-bottom: 12px; text-transform: uppercase;">Premium Media Service</div>
-    <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px;">Kuali Nusantara</h1>
-    <p style="margin: 8px 0 0; font-weight: 300; opacity: 0.8; font-size: 15px; letter-spacing: 0.5px;">Official Media Presence 2026</p>
+    <div class="logo-wrapper">
+        <img src="logo.jpg" alt="Logo" class="logo-floating" onerror="this.src='https://ui-avatars.com/api/?name=Kuali+Nusantara&background=e67e22&color=fff&rounded=true'">
+    </div>
+    <div data-aos="fade-up" data-aos-delay="200">
+        <span style="letter-spacing: 5px; font-size: 10px; color: #bf953f; font-weight: 700;">PREMIUM MEDIA SERVICE</span>
+        <h1 style="font-size: 32px; margin: 10px 0; font-weight: 700;">Kuali Nusantara</h1>
+        <p style="opacity: 0.8; font-weight: 300; font-size: 14px;">Official Media Presence 2026</p>
+    </div>
 </header>
 
 <div class="main-container">
-    
-    <div class="card">
-        <p style="text-align:center; font-weight: 600; margin-bottom: 20px; font-size: 11px; color: #999; letter-spacing: 3px; text-transform: uppercase;">Curated Portfolio</p>
+
+    <div class="card" data-aos="fade-up">
+        <p style="text-align:center; font-weight: 600; font-size: 11px; color: #bbb; letter-spacing: 3px; margin-bottom: 20px; text-transform: uppercase;">Curated Portfolio</p>
         <div class="social-grid">
-            <a href="https://www.instagram.com/kualinusantara_?igsh=MTdjM2dzMXFzaWh6bg==" class="social-link ig" target="_blank">Instagram</a>
-            <a href="https://www.tiktok.com/@kuali_nusantara?_r=1&_t=ZS-92zImdMN4Tt" class="social-link tt" target="_blank">TikTok</a>
+            <a href="https://www.instagram.com/kualinusantara_?igsh=MTdjM2dzMXFzaWh6bg==" class="social-link" target="_blank">Instagram</a>
+            <a href="https://www.tiktok.com/@kuali_nusantara?_r=1&_t=ZS-92zImdMN4Tt" class="social-link" target="_blank">TikTok</a>
+            <a href="https://youtube.com/@kualinusantara?si=QwPnedfIwPrKGc1C" class="social-link social-full" target="_blank">Official YouTube</a>
+        </div>
+    </div>
+    
+    <div class="card" data-aos="fade-up">
+        <h3 style="text-align:center; font-size: 12px; letter-spacing: 3px; color: #bbb; margin-bottom: 35px; text-transform: uppercase;">Our Packages</h3>
+        <div class="package">
+            <span class="package-title">UMKM Support</span>
+            <div class="price-tag">IDR 500K - 1.0M</div>
+            <ul class="benefit-list">
+                <li>HD Review & Editing</li>
+                <li>Strategic Story Integration</li>
+            </ul>
+        </div>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+        <div class="package">
+            <span class="package-title">Enterprise Resto</span>
+            <div class="price-tag">IDR 1.5M - 3.0M</div>
+            <ul class="benefit-list">
+                <li>Cinematic Storytelling</li>
+                <li>Priority Multi-Platform Ads</li>
+            </ul>
         </div>
     </div>
 
-    <div class="card">
-        <h2 style="margin-top:0; font-size: 20px; text-align: center; margin-bottom: 35px; letter-spacing: 1px; text-transform: uppercase; color: #888;">Collaboration Packages</h2>
-
-        <div class="package-title">SME Support Package</div>
-        <div class="price-tag">IDR 500K — 1.0M</div>
-        <ul class="benefit-list">
-            <li>High-Definition Food Review</li>
-            <li>Instagram Story Integration</li>
-            <li>Localized Audience Targeting</li>
-            <li>Digital Asset Delivery</li>
-        </ul>
-
-        <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 30px; margin-top: 10px;">
-
-        <div class="package-title">Enterprise Resto Package</div>
-        <div class="price-tag">IDR 1.5M — 3.0M</div>
-        <ul class="benefit-list" style="margin-bottom: 0;">
-            <li>Cinematic Storytelling Production</li>
-            <li>Multi-Platform Distribution (IG & TT)</li>
-            <li>Strategic Giveaway Management</li>
-            <li>Priority Lifetime Content Hosting</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <p style="text-align:center; font-weight: 600; margin-bottom: 15px; font-size: 11px; color: #999; letter-spacing: 3px; text-transform: uppercase;">Success Stories</p>
-        <div class="testimonial-wrapper">
-            <div class="testimonial-container" id="testimonialSlider">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"Video review-nya sinematik banget! Kunjungan resto kami naik drastis setelah kolaborasi."</p>
-                    <span class="testimonial-author">— Owner Bakso Solo Suryanata</span>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"Sangat profesional dan teliti. Hasil kontennya benar-benar menonjolkan ciri khas menu kami."</p>
-                    <span class="testimonial-author">— Owner Soto Seger Mbok Sirep</span>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"Engagement di sosmed kami meningkat tajam. Partner media terbaik untuk brand kuliner."</p>
-                    <span class="testimonial-author">— Owner Gultik 57</span>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"Kualitas produksi yang luar biasa. Sangat merekomendasikan Kuali Nusantara sebagai partner branding."</p>
-                    <span class="testimonial-author">— Media Agency</span>
-                </div>
+    <div class="card" data-aos="fade-up" style="padding: 35px 0;">
+        <p style="text-align:center; font-weight: 600; font-size: 11px; color: #bbb; letter-spacing: 3px; margin-bottom: 20px; text-transform: uppercase;">Client Experiences</p>
+        <div class="marquee-wrapper">
+            <div class="marquee-content">
+                <div class="marquee-item"><p class="testi-quote">"Video review sangat sinematik dan membantu meningkatkan traffic pengunjung secara signifikan."</p><span class="testi-user">Owner Bakso Solo Suryanata</span></div>
+                <div class="marquee-item"><p class="testi-quote">"Sangat profesional dalam bekerja. Hasil kontennya benar-benar menonjolkan menu kami."</p><span class="testi-user">Owner Soto Seger Mbok Sirep</span></div>
+                <div class="marquee-item"><p class="testi-quote">"Kerjasama yang luar biasa. Engagement di media sosial kami naik drastis setelah di-review."</p><span class="testi-user">Owner Gultik 57</span></div>
+                <div class="marquee-item"><p class="testi-quote">"Partner media yang sangat direkomendasikan untuk pengembangan branding kuliner."</p><span class="testi-user">Media Agency</span></div>
+                <div class="marquee-item"><p class="testi-quote">"Video review sangat sinematik dan membantu meningkatkan traffic pengunjung secara signifikan."</p><span class="testi-user">Owner Bakso Solo Suryanata</span></div>
+                <div class="marquee-item"><p class="testi-quote">"Sangat profesional dalam bekerja. Hasil kontennya benar-benar menonjolkan menu kami."</p><span class="testi-user">Owner Soto Seger Mbok Sirep</span></div>
+                <div class="marquee-item"><p class="testi-quote">"Kerjasama yang luar biasa. Engagement di media sosial kami naik drastis setelah di-review."</p><span class="testi-user">Owner Gultik 57</span></div>
+                <div class="marquee-item"><p class="testi-quote">"Partner media yang sangat direkomendasikan untuk pengembangan branding kuliner."</p><span class="testi-user">Media Agency</span></div>
             </div>
-            <div class="dots" id="dotContainer"></div>
         </div>
     </div>
 
-    <div class="card">
-        <h3 style="margin-top:0; font-size: 16px; text-align: center; text-transform: uppercase; letter-spacing: 2px; color: #888;">F.A.Q</h3>
+    <div class="card" data-aos="fade-up">
+        <h3 style="margin-top:0; font-size: 16px; text-align: center; letter-spacing: 2px; color: #888;">F.A.Q</h3>
         <div class="faq-item" onclick="toggleFaq(0)">
-            <div class="faq-question">Berapa lama proses pengerjaan? <span>+</span></div>
-            <div class="faq-answer">Proses editing premium memakan waktu 3-5 hari kerja setelah produksi footage selesai untuk hasil maksimal.</div>
+            <div class="faq-question">Proses pengerjaan? <span>+</span></div>
+            <div class="faq-answer">Editing premium memakan waktu 3-5 hari kerja agar hasil maksimal.</div>
         </div>
         <div class="faq-item" onclick="toggleFaq(1)">
-            <div class="faq-question">Apakah slot tersedia setiap saat? <span>+</span></div>
-            <div class="faq-answer">Kami membatasi slot setiap bulannya untuk menjaga eksklusivitas dan kualitas konten setiap klien kami.</div>
+            <div class="faq-question">Slot Tersedia? <span>+</span></div>
+            <div class="faq-answer">Terbatas setiap bulan untuk menjaga kualitas konten eksklusif.</div>
         </div>
     </div>
 
-    <div style="text-align: center;">
-        <a href="https://wa.me/6282255137774?text=Halo%20Kuali%20Nusantara,%20saya%20tertarik%20untuk%20diskusi%20kerjasama%20eksklusif" class="btn-wa">Start Collaboration</a>
-        <p style="font-size: 10px; color: #bbb; margin-top: 20px; letter-spacing: 3px;">BRINGING VALUE TO YOUR BRAND</p>
+    <div data-aos="zoom-in">
+        <a href="https://wa.me/6282255137774" class="btn-wa">Start Collaboration</a>
     </div>
 
 </div>
 
-<footer>
-    <p>&copy; 2026 KUALI NUSANTARA ENTERTAINMENT<br>INDONESIA 🇮🇩</p>
-</footer>
+<footer>&copy; 2026 KUALI NUSANTARA ENTERTAINMENT</footer>
 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    // FAQ Toggle Function
+    AOS.init({ duration: 1200, once: true });
+    window.onscroll = function() {
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        document.getElementById("scroll-progress").style.width = scrolled + "%";
+    };
     function toggleFaq(index) {
         const answers = document.querySelectorAll('.faq-answer');
         const current = answers[index].style.display;
         answers.forEach(a => a.style.display = 'none');
         answers[index].style.display = current === 'block' ? 'none' : 'block';
     }
-
-    // Testimonial Slider Logic
-    const slider = document.getElementById('testimonialSlider');
-    const cards = document.querySelectorAll('.testimonial-card');
-    const dotContainer = document.getElementById('dotContainer');
-    let currentIndex = 0;
-
-    cards.forEach((_, i) => {
-        const dot = document.createElement('span');
-        dot.classList.add('dot');
-        if (i === 0) dot.classList.add('active');
-        dotContainer.appendChild(dot);
-    });
-
-    const dots = document.querySelectorAll('.dot');
-    function showSlide(index) {
-        slider.style.transform = `translateX(-${index * 100}%)`;
-        dots.forEach(d => d.classList.remove('active'));
-        dots[index].classList.add('active');
-    }
-
-    setInterval(() => {
-        currentIndex = (currentIndex + 1) % cards.length;
-        showSlide(currentIndex);
-    }, 4500);
 </script>
-
 </body>
 </html>
